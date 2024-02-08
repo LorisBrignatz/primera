@@ -33,7 +33,9 @@ class _HomeState extends State<Home> {
                 var datos = mensajes[index].split('#');
 
                 return CardWidget(
-                  texto: '${datos[1]} ${datos[2]}',
+                  texto: '${datos[1]}',
+                  nombre: '${datos[2]}',
+                  mensaje: '${datos[3]}',
                   showOrHide: true,
                   size: 25,
                 );
@@ -75,11 +77,15 @@ class CardWidget extends StatelessWidget {
   const CardWidget({
     super.key,
     required this.texto,
+    required this.nombre,
+    required this.mensaje,
     required this.showOrHide,
     required this.size,
   });
 
   final String texto;
+  final String nombre;
+  final String mensaje;
   final bool showOrHide;
   final double size;
 
@@ -90,19 +96,35 @@ class CardWidget extends StatelessWidget {
       elevation: 15,
       child: Padding(
         padding: EdgeInsets.all(size),
-        child: Row(
+        child: Column(
           children: [
-            Expanded(
-                flex: 5,
-                child: Text(texto)),
-            Expanded(
-                flex: 1,
-                child: Container(color: Colors.red, height: 20,)),
-            Expanded(
-                flex: 4,
-                child: Icon(Icons.sms)),
+            Row(
+              children: [
+                Expanded(
+                    flex: 6,
+                    child: Text(texto)),
+                Expanded(
+                    flex: 6,
+                    child: Text(nombre)),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  flex: 8,
+                  child: Text(mensaje)
+                ),
+                Expanded(
+                  flex: 4,
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.delete),
+                  ),
+                ),
+              ],
+            )
           ],
-        ),
+        )
       )
     );
   }
