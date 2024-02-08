@@ -25,21 +25,24 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: Stack(
         children: [
-          ListView.builder(
-            physics: const ScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: mensajes.length,
-              itemBuilder: (BuildContext context, int index) {
-                var datos = mensajes[index].split('#');
+          Container(
+            height: MediaQuery.of(context).size.height,
+            child: ListView.builder(
+                physics: const ScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: mensajes.length,
+                itemBuilder: (BuildContext context, int index) {
+                  var datos = mensajes[index].split('#');
 
-                return CardWidget(
-                  texto: '${datos[1]}',
-                  nombre: '${datos[2]}',
-                  mensaje: '${datos[3]}',
-                  showOrHide: true,
-                  size: 25,
-                );
-              }
+                  return CardWidget(
+                    texto: '${datos[1]}',
+                    nombre: '${datos[2]}',
+                    mensaje: '${datos[3]}',
+                    showOrHide: true,
+                    size: 25,
+                  );
+                }
+            ),
           )
           /*SingleChildScrollView(
             child: Column(
