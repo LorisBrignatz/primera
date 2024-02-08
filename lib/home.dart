@@ -9,12 +9,38 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List mensajes = [];
+
+  @override
+  void initState(){
+    mensajes.add('1#Nuevo mensaje 1#usuario 1#Texto del mensaje');
+    mensajes.add('2#Nuevo mensaje 2#usuario 2#Texto del mensaje');
+    mensajes.add('3#Nuevo mensaje 3#usuario 3#Texto del mensaje');
+    mensajes.add('4#Nuevo mensaje 4#usuario 4#Texto del mensaje');
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          Column(
+          ListView.builder(
+            physics: const ScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: mensajes.length,
+              itemBuilder: (BuildContext context, int index) {
+                var datos = mensajes[index].split('#');
+
+                return CardWidget(
+                  texto: '${datos[1]} ${datos[2]}',
+                  showOrHide: true,
+                  size: 25,
+                );
+              }
+          )
+          /*SingleChildScrollView(
+            child: Column(
             children: [
               CardWidget(
                 texto: 'Nuevo mensaje 1',
@@ -37,7 +63,8 @@ class _HomeState extends State<Home> {
                 size: 5,
               ),
             ],
-          )
+          ),
+          ),*/
         ],
       ),
     );
