@@ -25,6 +25,18 @@ class _LoginState extends State<Login> {
               padding: EdgeInsets.only(left: size.width * 0.15, top: 20, right: size.width * 0.15, bottom: 20),
               child: Column(
                 children: [
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        print('SE DIO CLIC AL CONTENEDOR');
+                      });
+                    },
+                    child: Container(
+                      color: Colors.brown,
+                      width: size.width * 0.25,
+                      height: size.height * 0.1,
+                    ),
+                  ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
